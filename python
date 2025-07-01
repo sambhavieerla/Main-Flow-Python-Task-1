@@ -16,4 +16,112 @@ try:
 except ValueError:
     print("Invalid input! Please enter integer values.")
 ---
+# Task 2: Odd or Even
+# Objective: Determine whether a number is odd or even.
+
+number = int(input("Enter an integer: "))
+
+if number % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+---
+# Task 3: Factorial Calculation
+# Objective: Compute the factorial of a given number.
+
+n = int(input("Enter a number to calculate factorial: "))
+factorial = 1
+
+for i in range(1, n + 1):
+    factorial *= i
+
+print("Factorial:", factorial)
+---
+# Task 4: Fibonacci Sequence
+# Objective: Generate the first n numbers in the Fibonacci sequence.
+
+n = int(input("Enter how many Fibonacci numbers to generate: "))
+fib_sequence = []
+
+a, b = 0, 1
+for _ in range(n):
+    fib_sequence.append(a)
+    a, b = b, a + b
+
+print("Fibonacci sequence:", fib_sequence)
+---
+# Task 5: Reverse a String
+# Objective: Reverse the characters in a string.
+
+text = input("Enter a string to reverse: ")
+reversed_text = text[::-1]
+print("Reversed string:", reversed_text)
+---
+# Task 6: Palindrome Check
+# Objective: Check if a string reads the same backward as forward.
+
+text = input("Enter a string to check for palindrome: ")
+is_palindrome = text == text[::-1]
+print("Palindrome:", is_palindrome)
+---
+# Task 7: Leap Year Check
+# Objective: Determine whether a year is a leap year.
+
+year = int(input("Enter a year to check for leap year: "))
+is_leap = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+print("Leap Year:", is_leap)
+---
+# Task 8: Armstrong Number
+# Objective: Check if a number is an Armstrong number.
+
+number = int(input("Enter a number to check for Armstrong number: "))
+digits = str(number)
+num_digits = len(digits)
+armstrong_sum = sum(int(digit) ** num_digits for digit in digits)
+
+is_armstrong = number == armstrong_sum
+print("Armstrong Number:", is_armstrong)
+---
+# Task 1: Custom Encryption-Decryption System
+
+def encrypt(message, shift=3, multilayer=False):
+    encrypted = ""
+    for char in message:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            encrypted += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            encrypted += char  # keep spaces and special characters
+    if multilayer:
+        encrypted = encrypted[::-1]
+    return encrypted
+
+
+def decrypt(encrypted_message, shift=3, multilayer=False):
+    if multilayer:
+        encrypted_message = encrypted_message[::-1]
+    decrypted = ""
+    for char in encrypted_message:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            decrypted += chr((ord(char) - base - shift) % 26 + base)
+        else:
+            decrypted += char
+    return decrypted
+
+
+# Example Usage
+print("=== Custom Encryption-Decryption System ===")
+message = input("Enter the message: ")
+shift_value = int(input("Enter shift value (e.g., 3): "))
+use_multilayer = input("Use multi-layer encryption? (yes/no): ").strip().lower() == "yes"
+
+# Encryption
+ciphertext = encrypt(message, shift_value, use_multilayer)
+print("Encrypted message:", ciphertext)
+
+# Decryption
+original = decrypt(ciphertext, shift_value, use_multilayer)
+print("Decrypted message:", original)
+
 
